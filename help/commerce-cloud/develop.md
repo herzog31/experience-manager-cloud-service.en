@@ -78,9 +78,23 @@ For local CIF Add-on development using the AEM as a Cloud Service SDK following
 
     This variable must be set up for the AEM as a Cloud Service environment as well.
 
-6. Start the AEM as a Cloud Service SDK
+6. (Optional) To enable staged catalog features, you need to create an integration token for your Magento instance. Please follow the steps at [Getting Started](./getting-started.md#staging) to create the token.
+    
+    Create a file called `COMMERCE_AUTH_HEADER` in `crx-quickstart/secrets` with the following content:
 
-7. Start the local GraphQL proxy server
+    ```
+    Authorization: Bearer <Access Token>
+    ```
+
+    When starting AEM as a Cloud Service SDK, add the following parameter:
+
+    ```bash
+    -D org.apache.felix.configadmin.plugin.interpolation.secretsdir=<path to aem>/crx-quickstart/secrets
+    ```
+
+7. Start the AEM as a Cloud Service SDK
+
+8. Start the local GraphQL proxy server
 
     To make the Magento GraphQL endpoint available locally for the CIF add-on and the CIF components use the following command. The GraphQL endpoint will then be available at `http://localhost:3002/graphql`.
     Example Mac OSX:
@@ -97,7 +111,7 @@ For local CIF Add-on development using the AEM as a Cloud Service SDK following
     
     You can test the local GraphQL proxy by pointing a GraphQL query tool to `http://localhost:3002/graphql` and test a few queries.
  
-8. Login to AEM SDK and configure CIF to use the local GraphQL proxy server
+9. Login to AEM SDK and configure CIF to use the local GraphQL proxy server
  
     Navigate to the CIF Cloud Service configuration (Tools > Cloud Services > CIF Configuration). Open the properties view of the config used by your project.
     
